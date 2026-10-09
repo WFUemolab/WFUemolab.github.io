@@ -1,0 +1,110 @@
+# Media page content. Every section is optional except `substack`.
+# Entries marked `sample: true` show a yellow "Sample" badge — replace or delete them.
+
+substack:
+  url: https://christianwaugh.substack.com
+  title: Vita Bona Science
+  description: Dr. Waugh's Substack on the science of positive emotions, stress, and resilience, written for a general audience.
+
+# Featured writing (Substack posts, essays, books), newest first.
+#  - title: Post title
+#    date: 2026-09-01             # optional
+#    url: https://...
+#    outlet: Substack             # shown as the tag
+#    description: One-sentence teaser.
+#    cover: https://...           # optional front-cover image (books); a path like assets/img/x.jpg also works
+writing:
+  - title: Affect Dynamics
+    outlet: Book · Springer
+    url: https://link.springer.com/book/10.1007/978-3-030-82965-0
+    cover: https://media.springernature.com/w306/springer-static/cover-hires/book/978-3-030-82965-0
+    description: A Springer volume on how emotions change and unfold over time.
+
+podcasts:
+  # embed: optional player URL (e.g. Spotify "https://open.spotify.com/embed/episode/<id>")
+  # cover: optional image (podcast/article artwork); add `cover_fit: contain` for square artwork.
+  # Entries without a cover get a black-and-gold card showing the show/outlet name.
+  - title: "Anticipate! (Ep. 36)"
+    show: The Chill Factory
+    date: 2022-09-22
+    description: Dr. Waugh talks with host Jordan Friedman about the mood-altering value of anticipating things.
+    url: https://thechillfactory.libsyn.com/anticipate
+    cover: https://assets.libsyn.com/show/369131?height=600&width=600
+    cover_fit: contain
+  - title: Best of The Chill Factory (Vol. 3)
+    show: The Chill Factory
+    date: 2023-04-21
+    description: Highlights from past conversations, including “Anticipate!” with Christian Waugh.
+    url: https://thechillfactory.libsyn.com/best-of-the-chill-factory-vol-3
+    cover: https://assets.libsyn.com/show/369131?height=600&width=600
+    cover_fit: contain
+
+press:
+  # type: TV | News | Radio | Article (any text). Undated entries are listed last.
+  - title: To Enjoy Life More, Embrace Anticipation
+    outlet: The New York Times
+    type: News
+    date: 2022-05-31
+    description: Looking forward to something can be almost as good as experiencing it.
+    url: https://www.nytimes.com/2022/05/31/well/mind/anticipation-happiness.html
+  - title: "Review: Did This Summer Actually … Suck?"
+    outlet: InsideHook
+    type: News
+    description: How did Hot Vax Summer turn into the summer of our collective discontent, and was it our own fault for having expectations in the first place?
+    url: https://www.insidehook.com/article/news-opinion/did-hot-vax-summer-actually-suck
+    cover: https://www.insidehook.com/wp-content/uploads/2021/09/Summer-was-a-Bust-4.jpg?resize=1200,800
+  - title: Here’s Why Science Says You Should Book a Vacation Now
+    outlet: Eat This, Not That!
+    type: News
+    description: Scientific research has found that anticipating a vacation brings more sustained happiness than the vacation itself.
+    url: https://www.eatthis.com/heres-why-science-says-you-should-book-a-vacation-now/
+    cover: https://www.eatthis.com/wp-content/uploads/sites/4/2019/12/relaxed-woman-resting-vacation-seaside-sunbed.jpg?quality=82&strip=all
+  - title: "‘Hot Vax Summer’ is coming. Can it possibly live up to the hype?"
+    outlet: The Washington Post
+    type: News
+    date: 2021-05-17
+    description: People seem to be expecting no less than a post-pandemic party of the century.
+    url: https://www.washingtonpost.com/lifestyle/style/post-vaccination-summer-partying-dating-sex/2021/05/17/a04ca36e-b43c-11eb-9059-d8176b9e3798_story.html
+  - title: Asking one simple question can entirely change how you feel
+    outlet: Psyche
+    type: Article
+    description: Positive and negative emotions respond differently to ‘affect labelling’ – the act of giving a name to your feelings.
+    url: https://psyche.co/ideas/asking-one-simple-question-can-entirely-change-how-you-feel
+    cover: https://images.aeonmedia.co/images/d7049a69-655f-4c53-ade7-9349412df75c/1964_7_retrato-hombre.jpeg?width=800&quality=75&format=jpeg
+  - title: How to Choose Goals That Make You Come Alive
+    outlet: Goodnet
+    type: Article
+    description: Find out how well-being helps you achieve your goals.
+    url: https://www.goodnet.org/articles/how-to-choose-goals-that-make-you-come-alive
+    cover: https://goodnet.org/wp-content/uploads/2025/05/05163613/41351.jpg
+
+videos:
+  # youtube: a YouTube URL or 11-character video ID — the player loads only when clicked.
+  # Migrated from the "Coping YouTube Series" page on emolab.psych.wfu.edu.
+  - title: "Coping With Corona – Resilience"
+    youtube: fK23S0DAeQk
+    source: Coping YouTube Series
+  - title: "Coping With Corona – Distraction vs. Avoidance"
+    youtube: 2V-LdUgF8iQ
+    source: Coping YouTube Series
+  - title: "Coping with Corona – Changing the way you think"
+    youtube: 1tHm_8-zMwA
+    source: Coping YouTube Series
+  - title: "Coping with Corona – The brain"
+    youtube: Vs_16ZFYRwA
+    source: Coping YouTube Series
+  - title: "Coping With Corona – Problem-focused coping"
+    youtube: kRR8BmDZems
+    source: Coping YouTube Series
+  - title: "Coping With Corona – Positive Emotions"
+    youtube: lkjFv1AgZFM
+    source: Coping YouTube Series
+  - title: "Coping with Corona: Positive Emotions (Wake Forest University)"
+    youtube: OpMZJ-ej0ds
+    source: Coping YouTube Series
+  - title: "Coping with Corona – Brand new survey data on how people are coping!"
+    youtube: f8Jfwsv0hvg
+    source: Coping YouTube Series
+  - title: "Coping during COVID-19 – The role of distraction (World Pandemic Research Network)"
+    youtube: l3fFtXDILEs
+    source: Coping YouTube Series

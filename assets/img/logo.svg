@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Emolab</title>
+  <rect width="64" height="64" rx="12" fill="#1a1a1a"/>
+  <g transform="translate(1.6 8.2) scale(0.155)" fill="none" stroke="#c9a85c" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="22" d="M62 176 C36 152 38 98 84 70 C120 46 176 34 222 41 C272 47 322 66 346 106 C366 138 362 172 340 190 C326 202 302 205 286 200 C266 214 240 224 210 222 C182 220 162 230 140 226 C116 221 104 206 110 190 C94 196 74 190 62 176 Z"/>
+    <path stroke-width="22" d="M286 200 C296 228 336 238 354 214 C364 198 354 184 340 190"/>
+    <path stroke-width="20" d="M246 218 C250 244 252 264 250 286"/>
+    <path stroke-width="16" d="M110 190 C140 180 172 170 206 160 C222 155 238 149 252 138"/>
+    <path stroke-width="16" d="M207 42 C200 70 216 92 201 116 C193 131 201 146 191 161"/>
+    <path stroke-width="13" d="M92 84 C122 72 142 79 172 66"/>
+    <path stroke-width="13" d="M240 101 C266 91 287 106 316 96"/>
+    <path stroke-width="13" d="M140 206 C170 196 196 199 222 188"/>
+  </g>
+</svg>

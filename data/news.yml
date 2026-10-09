@@ -1,0 +1,49 @@
+# Latest news — shown on the home page, newest first (sorted by date automatically).
+#
+# - date: 2026-09-01             # YYYY-MM-DD
+#   category: Publication        # Member | Publication | Grant | Award | Project | Media (any text works)
+#   title: Short headline
+#   text: One or two sentences. *Markdown* is allowed.
+#   link: { url: https://..., label: Read the paper }   # optional
+#
+# Entries marked `sample: true` show a yellow "Sample" badge — replace or delete them.
+
+- date: 2026-09-15
+  category: Member
+  title: Welcome to our new lab members
+  text: We are excited to welcome new graduate students and undergraduate research assistants to Emolab this fall.
+  link: { url: people.html, label: Meet the team }
+  sample: true
+
+- date: 2026-08-20
+  category: Publication
+  title: New paper on positive distraction and coping
+  text: Our latest article examines when positive distraction helps people cope with chronic stressors.
+  link: { url: publications.html, label: See publications }
+  sample: true
+
+- date: 2026-06-02
+  category: Project
+  title: Now recruiting for a daily-life stress study
+  text: We are looking for adult participants for a two-week smartphone study on stress and recovery.
+  link: { url: projects.html, label: Learn more }
+  sample: true
+
+- date: 2026-04-10
+  category: Grant
+  title: Lab receives new research funding
+  text: The lab has been awarded funding to study the temporal dynamics of emotional recovery.
+  sample: true
+
+- date: 2026-02-14
+  category: Media
+  title: Dr. Waugh discusses resilience on a podcast
+  text: A conversation about what makes some people bounce back from stress more quickly.
+  link: { url: media.html, label: Listen }
+  sample: true
+
+- date: 2025-12-01
+  category: Award
+  title: Graduate student wins poster award
+  text: Congratulations to our graduate student on a poster award at a national conference.
+  sample: true

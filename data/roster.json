@@ -1,0 +1,10 @@
+---
+layout: null
+permalink: /data/roster.json
+---
+{%- comment -%}
+  Built by Jekyll on GitHub Pages: every Markdown page under Roster/ with its front matter and body.
+  Read by assets/js/core.js (Emolab.loadCollection). Do not edit by hand.
+{%- endcomment -%}
+{%- assign items = site.pages | where_exp: "p", "p.path contains 'Roster/'" | where_exp: "p", "p.name contains '.md'" -%}
+[{%- for p in items -%}{{ p | jsonify }}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]

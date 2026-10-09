@@ -1,0 +1,124 @@
+# Lab publications — the page sorts by year (newest first), keeping this file's order within a year.
+# Entries without a `year` are listed as "In press" at the top.
+#
+# - title: Article title
+#   authors: ["Waugh, C. E.", "Doe, J.", "Smith, A. B."]   # quote each name; lab members are bolded automatically
+#   year: 2026                                             # leave out for "In press"
+#   journal: Emotion
+#   volume: 26
+#   issue: 3
+#   pages: 512–528
+#   doi: 10.1037/emo0000000                                # bare DOI or full https://doi.org/... URL
+#   preprint: https://osf.io/preprints/psyarxiv/xxxxx
+#   pdf: assets/pdfs/doe-2026.pdf                          # optional
+#   osf: https://osf.io/xxxxx                              # optional data & materials link
+#   keywords: [resilience, positive emotion]               # becomes topic filters
+#   abstract: >
+#     Paste the abstract here. It is hidden behind an "Abstract" toggle.
+#
+# Migrated from the "Recent publications" list on emolab.psych.wfu.edu (author marks * and ^ kept as on the old site).
+
+- title: Simultaneous maintenance of emotions in affective working memory
+  authors: ["Kardosh, N.", "Waugh, C. E.", "Mikels, J. A.", "Mor, N."]
+  journal: Cognition & Emotion
+  doi: 10.1080/02699931.2024.2310160
+  keywords: [working memory, emotion maintenance]
+
+- title: Temporal orientation of positive reappraisal
+  authors: ["Vlasenko, V. V.*", "Tucker, W. K.^", "Waugh, C. E."]
+  journal: Emotion
+  doi: 10.1037/emo0001331
+  keywords: [reappraisal, positive emotion]
+
+- title: "How do people use reappraisal? An investigation of selection frequency and affective outcomes of reappraisal tactics"
+  authors: ["Vlasenko, V. V.", "Hayutin, I.", "Pan, C.", "Michael-Varakis, J.", "Waugh, C. E.", "Admon, R.", "McRae, K."]
+  journal: Emotion
+  doi: 10.1037/emo0001259
+  keywords: [reappraisal, emotion regulation]
+
+- title: "Positive distraction in daily activities as a predictor of good coping: A ‘day in the life’ during the COVID-19 pandemic"
+  authors: ["Leslie-Miller, C. J.^", "Cole, V. T.", "Waugh, C. E."]
+  journal: "Frontiers in Psychology: Positive Psychology"
+  doi: 10.3389/fpsyg.2023.1142665
+  keywords: [coping, distraction, positive emotion, COVID-19]
+
+- title: "Coping with COVID-19: The efficacy of disengagement for coping with the chronic stress of a pandemic"
+  authors: ["Waugh, C. E.", "Leslie-Miller, C. J.^", "Cole, V. T."]
+  journal: Anxiety, Stress, & Coping
+  doi: 10.1080/10615806.2022.2081841
+  keywords: [coping, disengagement, stress, COVID-19]
+
+- title: "Resilience as the ability to maintain well-being: An allostatic active inference model"
+  authors: ["Waugh, C. E.", "Sali, A. W."]
+  year: 2023
+  journal: Journal of Intelligence
+  volume: 11
+  issue: 8
+  pages: "158"
+  doi: 10.3390/jintelligence11080158
+  keywords: [resilience, well-being]
+
+- title: Anxiety and initial value dependence in startle habituation
+  authors: ["Faunce, J. A.*", "Blumenthal, T. D.", "Waugh, C. E."]
+  year: 2022
+  journal: Psychophysiology
+  volume: 59
+  issue: 10
+  pages: 1–17
+  doi: 10.1111/psyp.14071
+  keywords: [anxiety, startle, psychophysiology]
+
+- title: "What parts of reappraisal make us feel better? Dissociating the generation of reappraisals from their implementation"
+  authors: ["Waugh, C. E.", "Vlasenko, V. V.*", "McRae, K."]
+  year: 2022
+  journal: Affective Science
+  doi: 10.1007/s42761-022-00129-2
+  keywords: [reappraisal, emotion regulation]
+
+- title: Comparing the affective and social effects of positive reappraisal and minimizing reappraisal
+  authors: ["Zhao, Y.*", "Waugh, C. E.", "Kammrath, L.", "Wang, Q."]
+  year: 2021
+  journal: Cognition and Emotion
+  volume: 36
+  issue: 3
+  pages: 433–451
+  doi: 10.1080/02699931.2021.2014787
+  keywords: [reappraisal, positive emotion]
+
+- title: Affect labeling increases the intensity of positive emotions
+  authors: ["Vlasenko, V. V.*", "Rogers, E. G.^", "Waugh, C. E."]
+  year: 2021
+  journal: Cognition and Emotion
+  volume: 35
+  issue: 7
+  pages: 1350–1364
+  doi: 10.1080/02699931.2021.1959302
+  keywords: [affect labeling, positive emotion]
+
+- title: A multi-site preregistered paradigmatic test of the ego depletion effect
+  authors: ["Vohs, K. D.", "Schmeichel, B. J.", "Lohmann, S.", "Gronau, Q.", "Finley, A. J.", "…", "Waugh, C. E.", "…", "Song, Y.*", "…", "Wagenmakers, E.-J.", "Albarracín, D."]
+  year: 2021
+  journal: Psychological Science
+  volume: 32
+  issue: 10
+  pages: 1566–1581
+  doi: 10.1177/0956797621989733
+  keywords: [self-control, replication]
+
+- title: "Coping with COVID-19: The benefits of anticipating future positive events and maintaining optimism"
+  authors: ["Leslie-Miller, C. J.^", "Waugh, C. E.", "Cole, V. T."]
+  year: 2021
+  journal: "Frontiers in Psychology: Personality and Social Psychology"
+  volume: 12
+  pages: "646047"
+  doi: 10.3389/fpsyg.2021.646047
+  keywords: [coping, optimism, anticipation, COVID-19]
+
+- title: Adaptive and maladaptive forms of disengagement coping in caregivers of children with chronic illnesses
+  authors: ["Waugh, C. E.", "Leslie-Miller, C. J.^", "Shing, E. Z.*", "Furr, R. M.", "Nightingale, C. L.", "McLean, T. W."]
+  year: 2021
+  journal: Stress and Health
+  volume: 37
+  pages: 213–222
+  doi: 10.1002/smi.2985
+  keywords: [coping, disengagement, caregivers]

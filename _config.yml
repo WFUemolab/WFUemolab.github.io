@@ -1,0 +1,25 @@
+# GitHub Pages builds this site with Jekyll automatically — no local build step is needed.
+# Jekyll's only real job here is generating data/roster.json and data/projects.json
+# (lists of every Markdown file in Roster/ and Projects/). All pages are plain HTML.
+
+title: Emotional Adaptation and Psychophysiology Lab (Emolab)
+description: The Emolab at Wake Forest University studies the neural and psychophysiological underpinnings of emotion and stress regulation.
+url: https://wfuemolab.github.io
+
+markdown: kramdown
+
+exclude:
+  - README.md
+  - CLAUDE.md
+  - LICENSE
+  - scripts/
+  - Roster/template.md
+  - Projects/template-project/
+
+# Roster/*.md and Projects/*/info.md are also emitted as bare HTML pages by Jekyll;
+# they are never linked, so keep them out of layouts.
+defaults:
+  - scope: { path: "Roster" }
+    values: { layout: null, sitemap: false }
+  - scope: { path: "Projects" }
+    values: { layout: null, sitemap: false }

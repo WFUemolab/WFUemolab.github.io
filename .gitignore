@@ -1,0 +1,8 @@
+*.log
+
+# Jekyll (only if you build locally)
+_site/
+.jekyll-cache/
+.sass-cache/
+
+.DS_Store

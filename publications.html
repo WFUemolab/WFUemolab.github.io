@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Publications · Emolab</title>
+  <meta name="description" content="Searchable list of publications from the Emotional Adaptation and Psychophysiology Lab at Wake Forest University.">
+  <meta name="theme-color" content="#1a1a1a">
+  <meta property="og:title" content="Publications · Emolab">
+  <meta property="og:description" content="Searchable list of publications from the Emotional Adaptation and Psychophysiology Lab at Wake Forest University.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Open+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script defer src="assets/js/core.js"></script>
+  <script defer src="assets/js/publications.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Emolab home">
+        <img class="brand-mark" src="assets/img/logo.svg" alt="" width="42" height="42">
+        <span class="brand-text">
+          <span class="brand-name">Emolab</span>
+          <span class="brand-sub">Wake Forest University</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Menu</span>
+        <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="people.html">People</a>
+        <a href="publications.html" aria-current="page">Publications</a>
+        <a href="projects.html">Projects</a>
+        <a href="media.html">Media</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Publications</p>
+        <h1>Research output</h1>
+        <p>Peer-reviewed articles and chapters from the lab, newest first. Lab members are shown in <strong style="color:var(--primary)">bold</strong>.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:32px">
+      <div class="container">
+        <div class="with-panel">
+          <aside class="filter-panel" role="search" aria-label="Filter publications">
+            <button class="filter-toggle" type="button" aria-expanded="false" aria-controls="pub-filters">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><span>Filters</span><span class="filter-active" id="pub-active" hidden></span>
+            </button>
+            <div class="filter-body" id="pub-filters">
+              <div class="filter-head">
+                <h2 class="filter-heading">Filter publications</h2>
+                <button class="btn btn--link" id="pub-clear" type="button" hidden>Clear all</button>
+              </div>
+              <div class="filter-group">
+                <label class="filter-title" for="pub-search">Search</label>
+                <div class="search">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                  <input class="input" id="pub-search" type="search" placeholder="Title, author, journal, year…" autocomplete="off">
+                </div>
+              </div>
+              <div class="filter-group">
+                <label class="filter-title" for="pub-year">Year</label>
+                <select class="select" id="pub-year"><option value="">All years</option></select>
+              </div>
+              <div class="filter-group">
+                <label class="filter-title" for="pub-venue">Journal</label>
+                <select class="select" id="pub-venue"><option value="">All journals</option></select>
+              </div>
+              <div class="filter-group" id="pub-tags-row" hidden>
+                <span class="filter-title" id="pub-tags-label">Topics</span>
+                <div class="chips" id="pub-tags" role="group" aria-labelledby="pub-tags-label"></div>
+              </div>
+            </div>
+          </aside>
+          <div class="results">
+            <p class="result-meta" id="pub-count" aria-live="polite"></p>
+            <div id="publications"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-brand">Emotional Adaptation and Psychophysiology Lab</p>
+        <p>Department of Psychology<br>Wake Forest University<br>Winston-Salem, North Carolina</p>
+      </div>
+      <div>
+        <p class="footer-title">Explore</p>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="people.html">People</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="media.html">Media</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Elsewhere</p>
+        <ul class="footer-links">
+          <li><a href="https://christianwaugh.substack.com" target="_blank" rel="noopener noreferrer">Substack</a></li>
+          <li><a href="https://psychology.wfu.edu" target="_blank" rel="noopener noreferrer">WFU Psychology</a></li>
+          <li><a href="https://www.wfu.edu" target="_blank" rel="noopener noreferrer">Wake Forest University</a></li>
+        </ul>
+      </div>
+      <p class="footer-meta"><span>© <span data-year>2026</span> Emolab, Wake Forest University</span><span>Directed by Dr. Christian Waugh</span></p>
+    </div>
+  </footer>
+</body>
+</html>
