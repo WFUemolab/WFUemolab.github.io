@@ -46,7 +46,8 @@
     const st = STATUS[p.status];
     const links = [];
     if (p.study_url && p.status === 'on-going') {
-      links.push(`<a class="btn btn--sm btn--accent" href="${E.escape(p.study_url)}"${E.linkAttrs(p.study_url)}>${E.icon('flask')} Take part</a>`);
+      // Studies (including ones hosted in this repo, e.g. psychopy-experiments/) open in a new tab.
+      links.push(`<a class="btn btn--sm btn--accent" href="${E.escape(p.study_url)}" target="_blank" rel="noopener">${E.icon('flask')} Take part</a>`);
     }
     if (p.preregistration_url) links.push(`<a class="btn btn--sm btn--ghost" href="${E.escape(p.preregistration_url)}"${E.linkAttrs(p.preregistration_url)}>${E.icon('clipboard')} Pre-registration</a>`);
     if (p.publication_url) links.push(`<a class="btn btn--sm btn--ghost" href="${E.escape(p.publication_url)}"${E.linkAttrs(p.publication_url)}>${E.icon('file')} Publication</a>`);

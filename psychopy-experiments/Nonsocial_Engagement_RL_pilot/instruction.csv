@@ -1,0 +1,20 @@
+﻿page_index,intro_text
+1,"Welcome to our experiment!
+
+You are going to do two tasks. 
+
+You will do a decision-making task followed by a writing task. 
+
+In the writing task later you will be asked to write about one of two topics. You will be asked to either write about your personal experiences or comment on someone's opinion about something. "
+2,"The decision-making task will determine which writing task you do later.
+
+In the decision-making task, on each trial you will see two colorful images. Your task is to select either the left image or right image using the left and right arrow keys, respectively."
+3,"After you select an image, you will see a percentage (e.g., 78%). This percentage reflects how likely you are to write about your personal life (vs. comment on an opinion) in the writing task later. 
+
+At the end of the decision-making task, the computer will randomly pick one of the trials and then pick which writing task you do based on that percentage you received on that trial. "
+4,"For example, let's pretend that you selected the left image and saw 45% on a trial. If that trial was later selected, then there would be a 45% chance the computer would pick for you to write about your personal life. 
+
+So, each trial could possibly determine which writing task you do later. "
+5,"Selecting each image will be associated with either more or less likelihood of writing about your personal life (vs. commenting on an opinion). Those associations might change throughout the decision-making task as well. 
+
+Every once in awhile, you will be asked to rate you felt about receiving that particular percentage outcome on that trial. "

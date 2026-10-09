@@ -8,6 +8,12 @@
 #
 # Entries marked `sample: true` show a yellow "Sample" badge — replace or delete them.
 
+- date: 2026-10-07
+  category: Project
+  title: Now recruiting for a decision-making and personal preference study
+  text: We are looking for adult participants for a decision-making study.
+  link: { url: projects.html, label: Learn more }
+
 - date: 2026-09-15
   category: Member
   title: Welcome to our new lab members

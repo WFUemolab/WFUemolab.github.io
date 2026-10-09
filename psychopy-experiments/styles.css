@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #f7f6f3;
+  color: #222222;
+}
+
+header {
+  background: #000000;
+  color: #fff;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  border-bottom: 4px solid #9e7e38;
+}
+header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.9rem;
+}
+header p {
+  margin: 0;
+  color: #d9d9d9;
+  font-size: 1rem;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.lab-card {
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: #222222;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+}
+.lab-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  border-color: #9e7e38;
+}
+.lab-card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  color: #000000;
+}
+.lab-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #5f5f5f;
+  flex-grow: 1;
+}
+.lab-card .go {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #9e7e38;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: #5f5f5f;
+  font-size: 0.85rem;
+}
