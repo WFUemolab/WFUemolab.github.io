@@ -89,6 +89,21 @@
   const titleOf = (p) => p.position || ROLE_LABELS[roleKey(p)] || p.role || '';
   const pronouns = (p) => (p.pronouns ? ` <span class="person-pronouns">(${E.escape(p.pronouns)})</span>` : '');
 
+  // Projects a person works on: their own `projects:` list plus any project that names
+  // them under `leadership:`. Filled in by init().
+  let projectsOf = new Map();
+  function projectList(p) {
+    const list = projectsOf.get(p.slug) || [];
+    if (!list.length) return '';
+    return `
+      <div class="person-projects">
+        <span class="mini-label">Projects</span>
+        <ul>${list.map(({ project, lead }) => `
+          <li><a href="projects.html#project-${E.escape(project.slug)}">${E.escape(project.title || project.slug)}</a>${lead ? ' <span class="lead-tag">Lead</span>' : ''}</li>`).join('')}
+        </ul>
+      </div>`;
+  }
+
   function piCard(p) {
     return `
       <article class="card pi-card" id="person-${E.escape(p.slug)}">
@@ -97,6 +112,7 @@
           <h3>${E.escape(p.title)}${pronouns(p)} ${E.sampleBadge(p)}</h3>
           <p class="person-title">${E.escape(titleOf(p))}</p>
           <div class="prose">${p.html || E.markdown(p.summary)}</div>
+          ${projectList(p)}
           <div class="person-footer">${socialLinks(p)}</div>
         </div>
       </article>`;
@@ -111,6 +127,7 @@
         <p class="person-title">${E.escape(titleOf(p))}</p>
         ${E.sampleBadge(p)}
         ${p.summary ? `<p class="person-summary">${E.escape(p.summary)}</p>` : '<span class="person-summary"></span>'}
+        ${projectList(p)}
         <div class="person-footer">
           ${socialLinks(p)}
           ${hasBio ? `<button class="btn btn--sm btn--ghost" type="button" data-bio="${E.escape(p.slug)}">Full bio</button>` : ''}
@@ -127,6 +144,7 @@
           <h3>${E.escape(p.title)} ${E.sampleBadge(p)}</h3>
           <div class="alum-meta">${E.escape(titleOf(p))}${years ? ` · ${E.escape(years)}` : ''}</div>
           ${p.current_position ? `<div class="alum-now">Now: ${E.escape(p.current_position)}</div>` : ''}
+          ${projectList(p)}
           ${socialLinks(p)}
         </div>
       </article>`;
@@ -157,21 +175,48 @@
         </div>
       </div>
       <div class="prose">${p.html}</div>
+      ${projectList(p)}
       <div class="person-footer" style="justify-content:flex-start">${socialLinks(p)}</div>`;
     dialog.querySelector('[data-close]').innerHTML = E.icon('close');
     if (typeof dialog.showModal === 'function') dialog.showModal();
     else dialog.setAttribute('open', '');
   }
 
+  function linkProjects(roster, projects) {
+    const map = new Map(roster.map((p) => [p.slug, []]));
+    const add = (person, project, lead) => {
+      const list = map.get(person.slug);
+      const existing = list.find((x) => x.project === project);
+      if (existing) existing.lead = existing.lead || lead;
+      else list.push({ project, lead });
+    };
+    for (const person of roster) {
+      for (const project of E.resolveRefs(projects, person.projects, person.path)) add(person, project, false);
+    }
+    for (const project of projects) {
+      for (const person of E.resolveRefs(roster, project.leadership, project.path)) add(person, project, true);
+    }
+    // On-going first, then newest.
+    const ongoing = (x) => (/^(on-?going|active|current|recruiting)$/i.test(String(x.project.status || '').trim()) ? 0 : 1);
+    for (const list of map.values()) list.sort((a, b) => ongoing(a) - ongoing(b) || (Number(b.project.year) || 0) - (Number(a.project.year) || 0));
+    return map;
+  }
+
   async function init() {
     const el = document.getElementById('people');
     E.renderLoading(el, 4);
     let roster;
+    let projects;
     try {
-      roster = await E.loadCollection('roster');
+      // Projects are optional here: they only add the "Projects" links on each card.
+      [roster, projects] = await Promise.all([
+        E.loadCollection('roster'),
+        E.loadCollection('projects').catch(() => []),
+      ]);
     } catch (err) {
       return E.loadError(el, err);
     }
+    projectsOf = linkProjects(roster, projects);
     if (!roster.length) return E.renderState(el, 'No lab members listed yet.', 'Add Markdown files to the <code>Roster/</code> folder.');
 
     const known = new Set(GROUPS.flatMap((g) => g.roles));
@@ -216,8 +261,9 @@
       if (e.target === dialog || e.target.closest('[data-close]')) dialog.close();
     });
 
-    // Honour #person-slug links after content renders.
-    if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
+    // Honour #person-slug links (e.g. from a project's Leadership list) after content renders.
+    E.revealHash();
+    window.addEventListener('hashchange', E.revealHash);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

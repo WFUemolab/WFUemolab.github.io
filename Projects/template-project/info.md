@@ -32,6 +32,11 @@ cover: cover.jpg
 # e.g. psychopy-experiments/My_Task/index.html (works locally and on the live site).
 study_url: https://wakeforest.qualtrics.com/jfe/form/XXXXXXXX
 
+# Optional: who leads the project, by file name in Roster/ or Roster/Alumni/ (without .md),
+# or the person's full name. Shown on the card with links to their People profile; the
+# project also appears (marked "Lead") on each leader's card.
+leadership: [christian-waugh]
+
 # Optional links.
 preregistration_url: https://osf.io/xxxxx
 publication_url: https://doi.org/10.xxxx/xxxxx

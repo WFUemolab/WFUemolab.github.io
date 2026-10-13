@@ -261,6 +261,39 @@
     return `${E.normalize(last)}|${E.normalize(first || '').charAt(0)}`;
   };
 
+  /* ---------- Cross-references between Roster and Projects ---------- */
+
+  // Resolve a list of references (file/folder slugs, or names/titles) to items.
+  // Unknown references are skipped with a console warning naming the source file.
+  E.resolveRefs = (items, refs, source) => {
+    const bySlug = new Map(items.map((i) => [i.slug.toLowerCase(), i]));
+    const byTitle = new Map(items.map((i) => [E.normalize(i.title).trim(), i]));
+    const found = [];
+    for (const ref of E.toArray(refs)) {
+      const key = String(ref).trim();
+      const item = bySlug.get(key.toLowerCase()) || byTitle.get(E.normalize(key));
+      if (item && !found.includes(item)) found.push(item);
+      else if (!item) console.warn(`[Emolab] ${source}: no match for "${key}" — use the file/folder name or exact title.`);
+    }
+    return found;
+  };
+
+  // Scroll to the element named in the URL hash (e.g. #person-jane-doe) and flash a highlight.
+  E.revealHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const el = id && document.getElementById(id);
+    if (!el) return false;
+    // Instant (smooth scrolling gets interrupted by late layout), and again once images
+    // above the target have loaded and shifted it.
+    const jump = () => el.scrollIntoView({ block: 'center', behavior: 'instant' });
+    jump();
+    if (document.readyState !== 'complete') window.addEventListener('load', jump, { once: true });
+    el.classList.remove('is-target');
+    void el.offsetWidth; // restart the animation
+    el.classList.add('is-target');
+    return true;
+  };
+
   /* ---------- Filter side panel ---------- */
 
   // Collapsible on narrow screens; `setActive(n)` shows the active-filter count on the toggle.

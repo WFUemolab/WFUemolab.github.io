@@ -30,6 +30,11 @@ cover: cover.jpg
 # "Take part" button — only shown while status is On-going.
 study_url: psychopy-experiments/Nonsocial_Engagement_RL_pilot/index.html
 
+# Optional: who leads the project, by file name in Roster/ or Roster/Alumni/ (without .md),
+# or the person's full name. Shown on the card with links to their People profile; the
+# project also appears (marked "Lead") on each leader's card.
+leadership: [lixiang-xu]
+
 # Optional links.
 # preregistration_url: https://osf.io/xxxxx
 # publication_url: https://doi.org/10.xxxx/xxxxx

@@ -42,6 +42,11 @@ links:
   linkedin: https://www.linkedin.com/in/username
   github: https://github.com/username
 
+# Optional: projects this person works on, by folder name in Projects/ (or the project's title).
+# Shown on their card as links to the Projects page. Projects that list this person under
+# `leadership:` are added automatically (marked "Lead"), so you don't need to repeat them here.
+projects: []
+
 # Other spellings used in author lists, so publications bold this person correctly.
 # ("Jane Doe" already matches "Doe, J.", "Doe, J. A.", "J. Doe".)
 aliases: ["Smith, J."]

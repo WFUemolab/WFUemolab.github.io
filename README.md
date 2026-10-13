@@ -58,6 +58,11 @@ Entries marked `sample: true` are placeholders and show a yellow **Sample** badg
 
 > The field names `name`, `path`, `url`, `dir` and `content` are reserved by GitHub Pages. Use `title` for the person's name and `position` for their job title.
 
+### Link people and projects
+- In a person's file, `projects: [folder-name, …]` lists the projects they work on (folder names in `Projects/`). They appear on the person's card and link to the Projects page.
+- In a project's `info.md`, `leadership: [file-name, …]` lists who leads it (roster file names without `.md`, from `Roster/` or `Roster/Alumni/`). Leaders appear on the project card and link to their People profile. The project is also added to each leader's card, marked **Lead**, so you don't need to list it twice.
+- Full names or project titles work too, e.g. `leadership: ["Christian Waugh"]`. If a name doesn't match anything, it's skipped and a warning appears in the browser console.
+
 ### Add a project
 1. Copy the `Projects/template-project/` folder to `Projects/<short-name>/`.
 2. Edit `info.md`. `status` is `On-going` or `Finished`. A `study_url` adds a **Take part** button while the project is on-going.

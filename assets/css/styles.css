@@ -396,7 +396,7 @@ button, input, select { font: inherit; color: inherit; }
 .social a:hover { background: var(--gold); color: #fff; }
 .social .icon { width: 17px; height: 17px; }
 
-.alumni-grid { --min: 280px; gap: 14px; }
+.alumni-grid { --min: 280px; gap: 14px; align-items: start; }
 .alum-card { display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; }
 .alum-card .avatar { width: 56px; }
 .alum-card .avatar-initials { font-size: 1.15rem; }
@@ -538,3 +538,32 @@ mark { background: #f3e6c4; color: inherit; padding: 0 1px; border-radius: 2px; 
 .video-frame .cover-fallback { position: absolute; inset: 0; }
 .video-frame .cover-fallback .icon { position: static; width: 44px; height: 44px; opacity: 0.55; }
 .video-card .media-card { border: 0; box-shadow: none; }
+
+/* ---------- People ↔ Projects cross-links ---------- */
+.mini-label { display: block; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.person-projects { width: 100%; margin-top: 14px; text-align: left; }
+.person-projects ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.person-projects li { display: flex; align-items: baseline; gap: 6px; font-size: var(--fs-sm); line-height: 1.35; }
+.person-projects li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 6px; border-radius: 50%; background: var(--gold); align-self: flex-start; }
+.person-projects a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.person-projects a:hover { color: var(--gold-dark); text-decoration: underline; }
+.lead-tag { flex: none; padding: 0 7px; border-radius: var(--radius-pill); background: var(--black); color: var(--gold-light); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.person-card .person-projects { text-align: center; }
+.person-card .person-projects li { display: block; }
+.person-card .person-projects li::before { display: none; }
+.person-card .lead-tag { margin-left: 4px; vertical-align: 1px; }
+.pi-card .person-projects { margin-top: 18px; }
+.alum-card .person-projects { margin-top: 6px; }
+
+.project-people ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.project-people a { display: inline-flex; align-items: center; gap: 8px; padding: 3px 12px 3px 3px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--surface-2); color: var(--ink); font-size: var(--fs-sm); font-weight: 600; text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+.project-people a:hover { border-color: var(--gold); background: var(--gold-50); color: var(--gold-dark); }
+.project-people .avatar { width: 28px; }
+.project-people .avatar-initials { font-size: 0.72rem; font-family: var(--font-sans); font-weight: 700; }
+
+/* Card targeted by a cross-link (#person-… / #project-…) */
+.is-target { animation: target-flash 2.4s var(--ease); }
+@keyframes target-flash {
+  0%, 40% { box-shadow: 0 0 0 3px var(--gold), var(--shadow-lg); }
+  100% { box-shadow: var(--shadow-sm); }
+}

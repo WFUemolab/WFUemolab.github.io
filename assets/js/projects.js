@@ -12,6 +12,7 @@
   const state = { status: '', q: '', category: '', year: '', tags: new Set() };
   let panel;
   let projects = [];
+  let roster = [];
   const $ = (id) => document.getElementById(id);
 
   // "On-going", "ongoing", "Active" → 'on-going'; everything else → 'finished'.
@@ -21,14 +22,16 @@
     return items.map((p) => {
       const keywords = E.toArray(p.keywords).map(String);
       const status = statusKey(p.status);
+      const leaders = E.resolveRefs(roster, p.leadership, p.path);
       return {
         ...p,
+        leaders,
         status,
         keywords,
         year: p.year != null ? String(p.year) : '',
         category: p.category ? String(p.category) : '',
         cover: E.resolvePath(p.base, p.cover || 'cover.jpg'),
-        haystack: E.normalize([p.title, p.summary, p.category, p.year, keywords.join(' '), p.body].join(' ')),
+        haystack: E.normalize([p.title, p.summary, p.category, p.year, keywords.join(' '), leaders.map((l) => l.title).join(' '), p.body].join(' ')),
       };
     }).sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || (Number(b.year) || 0) - (Number(a.year) || 0) || String(a.title).localeCompare(String(b.title)));
   }
@@ -40,6 +43,17 @@
     return `<div class="cover-fallback" style="background:linear-gradient(135deg, ${c1}, ${c2})">
       <svg viewBox="0 0 320 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0 120 C40 120 50 60 80 60 S120 140 160 140 S200 40 240 40 S290 110 320 100" fill="none" stroke="#fff" stroke-width="2"/><path d="M0 150 C50 150 70 110 110 110 S170 160 210 150 S280 120 320 130" fill="none" stroke="#fff" stroke-width="1.5" opacity=".6"/></svg>
       <span>${E.escape(p.category || 'Emolab')}</span></div>`;
+  }
+
+  function leadership(p) {
+    if (!p.leaders.length) return '';
+    return `
+      <div class="project-people">
+        <span class="mini-label">Leadership</span>
+        <ul>${p.leaders.map((m) => `
+          <li><a href="people.html#person-${E.escape(m.slug)}">${E.avatar(m.title, E.resolvePath('Roster/', m.photo))}<span>${E.escape(m.title)}</span></a></li>`).join('')}
+        </ul>
+      </div>`;
   }
 
   function card(p) {
@@ -68,6 +82,7 @@
           </div>
           <h3>${E.escape(p.title || p.slug)}</h3>
           ${p.summary ? `<p>${E.escape(p.summary)}</p>` : ''}
+          ${leadership(p)}
           ${p.keywords.length ? `<div class="tags">${p.keywords.map((k) => `<button type="button" class="tag" data-keyword="${E.escape(k)}">${E.escape(k)}</button>`).join('')}</div>` : ''}
           ${p.body.trim() ? `<details class="project-more"><summary>About this project</summary><div class="prose">${p.html}</div></details>` : ''}
           ${links.length ? `<div class="project-actions">${links.join('')}</div>` : ''}
@@ -151,7 +166,13 @@
     const el = $('projects');
     E.renderLoading(el, 3);
     try {
-      projects = prepare(await E.loadCollection('projects'));
+      // Roster is optional here: it only adds the "Leadership" links on each card.
+      const [items, people] = await Promise.all([
+        E.loadCollection('projects'),
+        E.loadCollection('roster').catch(() => []),
+      ]);
+      roster = people;
+      projects = prepare(items);
     } catch (err) {
       return E.loadError(el, err);
     }
@@ -168,6 +189,17 @@
     panel = E.filterPanel('proj');
     bind();
     render();
+
+    // Honour #project-slug links (e.g. from a person's Projects list). Clear filters if they hide it.
+    const reveal = () => {
+      if (!location.hash.startsWith('#project-')) return;
+      if (!E.revealHash()) {
+        $('proj-clear').click();
+        E.revealHash();
+      }
+    };
+    reveal();
+    window.addEventListener('hashchange', reveal);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
