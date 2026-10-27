@@ -14,7 +14,7 @@ title: Anaelle Gackiere
 #         Former Postdoc | Former PhD | Former Master | Former Staff | Former Undergrad
 # Moving someone to Alumni = move their file into Roster/Alumni/ (their role is then shown as
 # "Former …" automatically) and add end_year / current_position.
-role: Masters Student
+role: Master
 
 # Optional line under the name. Defaults to a label based on `role` (e.g. "PhD Student").
 position: Masters Student, Psychology
@@ -31,14 +31,14 @@ summary: Studies how health influences current and expected well-being.
 
 # Any of these keys are shown as icons; leave out the ones you don't use.
 links:
-  scholar: https://scholar.google.com/citations?user=XXXXXXX
-  website: https://example.com
+  # scholar: https://scholar.google.com/citations?user=XXXXXXX
+  # website: https://example.com
   orcid: https://orcid.org/0009-0009-7667-9295
-  researchgate: https://www.researchgate.net/profile/Name
-  youtube: https://www.youtube.com/@channel
-  substack: https://name.substack.com
-  twitter: https://x.com/username
-  bluesky: https://bsky.app/profile/username
+  # researchgate: https://www.researchgate.net/profile/Name
+  # youtube: https://www.youtube.com/@channel
+  # substack: https://name.substack.com
+  # twitter: https://x.com/username
+  # bluesky: https://bsky.app/profile/username
   linkedin: https://www.linkedin.com/in/anaelle-gackiere
   github: https://github.com/agackiere
 
