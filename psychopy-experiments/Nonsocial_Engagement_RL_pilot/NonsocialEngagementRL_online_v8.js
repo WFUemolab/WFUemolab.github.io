@@ -14,8 +14,7 @@ const { round } = util;
 // store info about the experiment session:
 let expName = 'Nonsocial Engagement RL Pilot';  // from the Builder filename that created this script
 let expInfo = {
-    'participant': `${util.pad(Number.parseFloat(util.randint(0, 999999)).toFixed(0), 6)}`,
-    'session': '',
+    'Prolific ID*': '',
 };
 let PILOTING = util.getUrlParameters().has('__pilotToken');
 
@@ -130,10 +129,11 @@ async function updateInfo() {
 
   // add info from the URL:
   util.addInfoFromUrl(expInfo);
-  
+  psychoJS.setRedirectUrls('https://app.prolific.com/submissions/complete?cc=C18U7IZS', '');
+
 
   
-  psychoJS.experiment.dataFileName = (("." + "/") + `data/${expInfo["participant"]}_${expName}_${expInfo["date"]}`);
+  psychoJS.experiment.dataFileName = (("." + "/") + `data/${expInfo["Prolific ID*"]}_${expName}_${expInfo["date"]}`);
   psychoJS.experiment.field_separator = '\t';
 
 
