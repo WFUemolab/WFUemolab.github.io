@@ -14,7 +14,7 @@ const { round } = util;
 // store info about the experiment session:
 let expName = 'Nonsocial Engagement RL Pilot';  // from the Builder filename that created this script
 let expInfo = {
-    'Prolific ID*': '',
+    'PROLIFIC_PID': '',
 };
 let PILOTING = util.getUrlParameters().has('__pilotToken');
 
@@ -46,6 +46,9 @@ psychoJS.scheduleCondition(function() { return (psychoJS.gui.dialogComponent.but
 // flowScheduler gets run if the participants presses OK
 flowScheduler.add(updateInfo); // add timeStamp
 flowScheduler.add(experimentInit);
+flowScheduler.add(firebase_setupRoutineBegin());
+flowScheduler.add(firebase_setupRoutineEachFrame());
+flowScheduler.add(firebase_setupRoutineEnd());
 const intro_text_loopLoopScheduler = new Scheduler(psychoJS);
 flowScheduler.add(intro_text_loopLoopBegin(intro_text_loopLoopScheduler));
 flowScheduler.add(intro_text_loopLoopScheduler);
@@ -133,7 +136,7 @@ async function updateInfo() {
 
 
   
-  psychoJS.experiment.dataFileName = (("." + "/") + `data/${expInfo["Prolific ID*"]}_${expName}_${expInfo["date"]}`);
+  psychoJS.experiment.dataFileName = (("." + "/") + `data/${expInfo["PROLIFIC_PID"]}_${expName}_${expInfo["date"]}`);
   psychoJS.experiment.field_separator = '\t';
 
 
@@ -141,6 +144,7 @@ async function updateInfo() {
 }
 
 
+var firebase_setupClock;
 var introClock;
 var description_text1;
 var intro_continue_text;
@@ -198,6 +202,56 @@ var timer_text;
 var globalClock;
 var routineTimer;
 async function experimentInit() {
+  // Initialize components for Routine "firebase_setup"
+  firebase_setupClock = new util.Clock();
+  // ---- Save data to Firestore (hosted off Pavlovia) ----
+  // Off Pavlovia, PsychoJS's own save would offer the CSV as a download to the participant: turn it off
+  psychoJS._saveResults = false;
+  
+  // Firebase web config is not a secret: access is controlled by the Firestore security rules
+  window.FB_CONFIG = {
+      apiKey: "AIzaSyDHoy6gciqwaGzA4ZZbCh6TGXBLwQqF7jA",
+      authDomain: "emolab-online-database.firebaseapp.com",
+      projectId: "emolab-online-database",
+      storageBucket: "emolab-online-database.firebasestorage.app",
+      messagingSenderId: "826044166028",
+      appId: "1:826044166028:web:9a49845f0ec990345530a9"
+  };
+  window.FB_COLLECTION = (util.getUrlParameters().get('test') === '1') ? 'test_sessions' : 'sessions';
+  
+  window.fbReady = (async () => {
+      const FB = 'https://www.gstatic.com/firebasejs/13.0.0/';
+      const { initializeApp } = await import(FB + 'firebase-app.js');
+      const { getAuth, signInAnonymously } = await import(FB + 'firebase-auth.js');
+      const fs = await import(FB + 'firebase-firestore.js');
+      const app = initializeApp(window.FB_CONFIG);
+      const auth = getAuth(app);
+      await signInAnonymously(auth);
+      return { auth, db: fs.getFirestore(app), fs };
+  })();
+  window.fbReady.catch(err => console.error('[Firebase] setup failed:', err));
+  
+  // One document per session; each call overwrites it with all rows so far
+  window.fbSave = async (stage) => {
+      try {
+          const { auth, db, fs } = await window.fbReady;
+          const rows = psychoJS.experiment._trialsData;
+          // PROLIFIC_PID comes from the Prolific URL; fallback keeps test runs without it saving
+          const pid = String(expInfo['PROLIFIC_PID'] || 'no_pid');
+          await fs.setDoc(fs.doc(db, window.FB_COLLECTION, `${pid}_${expInfo['date']}`), {
+              uid: auth.currentUser.uid,
+              participant: pid,
+              expName: expName,
+              stage: stage,
+              n_rows: rows.length,
+              rows_json: JSON.stringify(rows),
+              updated: fs.serverTimestamp()
+          });
+          console.log(`[Firebase] saved "${stage}" (${rows.length} rows)`);
+      } catch (err) {
+          console.error(`[Firebase] save failed at "${stage}":`, err);
+      }
+  };
   // Initialize components for Routine "intro"
   introClock = new util.Clock();
   description_text1 = new visual.TextStim({
@@ -522,7 +576,7 @@ async function experimentInit() {
     pos: [0, 0], draggable: false, height: 0.05,  wrapWidth: undefined, ori: 0.0,
     languageStyle: 'LTR',
     color: new util.Color('white'),  opacity: undefined,
-    depth: 0.0 
+    depth: -1.0 
   });
   
   endofmaintask_resp = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
@@ -694,6 +748,94 @@ async function experimentInit() {
   routineTimer = new util.CountdownTimer();  // to track time remaining of each (non-slip) routine
   
   return Scheduler.Event.NEXT;
+}
+
+
+var t;
+var frameN;
+var continueRoutine;
+var routineForceEnded;
+var firebase_setupMaxDurationReached;
+var firebase_setupMaxDuration;
+var firebase_setupComponents;
+function firebase_setupRoutineBegin(snapshot) {
+  return async function () {
+    TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
+    
+    //--- Prepare to start Routine 'firebase_setup' ---
+    t = 0;
+    frameN = -1;
+    continueRoutine = true; // until we're told otherwise
+    // keep track of whether this Routine was forcibly ended
+    routineForceEnded = false;
+    firebase_setupClock.reset();
+    routineTimer.reset();
+    firebase_setupMaxDurationReached = false;
+    // update component parameters for each repeat
+    firebase_setupMaxDuration = null
+    // keep track of which components have finished
+    firebase_setupComponents = [];
+    
+    for (const thisComponent of firebase_setupComponents)
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+    return Scheduler.Event.NEXT;
+  }
+}
+
+
+function firebase_setupRoutineEachFrame() {
+  return async function () {
+    //--- Loop for each frame of Routine 'firebase_setup' ---
+    // get current time
+    t = firebase_setupClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      routineForceEnded = true;
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    for (const thisComponent of firebase_setupComponents)
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+        break;
+      }
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function firebase_setupRoutineEnd(snapshot) {
+  return async function () {
+    //--- Ending Routine 'firebase_setup' ---
+    for (const thisComponent of firebase_setupComponents) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    }
+    // the Routine "firebase_setup" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    // Routines running outside a loop should always advance the datafile row
+    if (currentLoop === psychoJS.experiment) {
+      psychoJS.experiment.nextEntry(snapshot);
+    }
+    return Scheduler.Event.NEXT;
+  }
 }
 
 
@@ -970,10 +1112,6 @@ function question_afterLoopEndIteration(scheduler, snapshot) {
 }
 
 
-var t;
-var frameN;
-var continueRoutine;
-var routineForceEnded;
 var introMaxDurationReached;
 var _ready_button_allKeys;
 var introMaxDuration;
@@ -2581,6 +2719,7 @@ function desc_end_of_main_taskRoutineBegin(snapshot) {
       routineTimer.reset();
       desc_end_of_main_taskMaxDurationReached = false;
       // update component parameters for each repeat
+      window.fbSave('main_task_done');
       endofmaintask_resp.keys = undefined;
       endofmaintask_resp.rt = undefined;
       _endofmaintask_resp_allKeys = [];
@@ -2953,6 +3092,8 @@ function FinalDisplayRoutineBegin(snapshot) {
       FinalDisplayMaxDurationReached = false;
       // update component parameters for each repeat
       // Run 'Begin Routine' code from FinalDisplay_code
+      window.fbSave('questions_done');
+      
       if (trial_outcomes && trial_outcomes.length > 0) {
           // 1. Randomly select an element from the trial_outcomes array in pure JavaScript
           const randomIndex = Math.floor(Math.random() * trial_outcomes.length);
@@ -3434,6 +3575,12 @@ async function quitPsychoJS(message, isCompleted) {
     // Check for and save orphaned data
     if (psychoJS.experiment.isEntryEmpty()) {
       psychoJS.experiment.nextEntry();
+    }
+    // Flush a half-finished row (e.g. after Escape), then send the final copy, waiting at most 10 s
+    if (window.fbSave) {
+        if (!psychoJS.experiment.isEntryEmpty()) { psychoJS.experiment.nextEntry(); }
+        await Promise.race([window.fbSave(isCompleted ? 'final' : 'quit_early'),
+                            new Promise(r => setTimeout(r, 10000))]);
     }
     psychoJS.window.close();
     psychoJS.quit({message: message, isCompleted: isCompleted});
