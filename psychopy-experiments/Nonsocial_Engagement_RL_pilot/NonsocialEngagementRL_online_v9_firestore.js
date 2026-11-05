@@ -252,6 +252,43 @@ async function experimentInit() {
           console.error(`[Firebase] save failed at "${stage}":`, err);
       }
   };
+  
+  // Gzip the PsychoJS log (what Pavlovia saves as .log.gz) and store it in the 'logs' collection
+  window.FB_LOG_COLLECTION = (window.FB_COLLECTION === 'test_sessions') ? 'test_logs' : 'logs';
+  window.fbSaveLog = async () => {
+      try {
+          if (typeof CompressionStream === 'undefined') {
+              console.warn('[Firebase] browser cannot gzip: log not saved');
+              return;
+          }
+          const { auth, db, fs } = await window.fbReady;
+          const pid = String(expInfo['PROLIFIC_PID'] || 'no_pid');
+          // Same line format as PsychoJS's own log upload: time, level, message[, object]
+          const logs = psychoJS.experimentLogger._serverLogs;
+          let text = '';
+          for (const log of logs) {
+              text += `${log.time}\t${Symbol.keyFor(log.level)}\t${log.msg}`;
+              if (log.obj !== 'undefined') { text += `\t${log.obj}`; }
+              text += '\n';
+          }
+          const gzStream = new Blob([text]).stream().pipeThrough(new CompressionStream('gzip'));
+          const gz = new Uint8Array(await new Response(gzStream).arrayBuffer());
+          if (gz.length > 1000000) {  // Firestore documents are limited to 1 MiB
+              console.warn(`[Firebase] log too large (${gz.length} bytes gzipped): not saved`);
+              return;
+          }
+          await fs.setDoc(fs.doc(db, window.FB_LOG_COLLECTION, `${pid}_${expInfo['date']}`), {
+              uid: auth.currentUser.uid,
+              participant: pid,
+              n_lines: logs.length,
+              log_gz: fs.Bytes.fromUint8Array(gz),
+              updated: fs.serverTimestamp()
+          });
+          console.log(`[Firebase] saved log (${logs.length} lines, ${gz.length} bytes gzipped)`);
+      } catch (err) {
+          console.error('[Firebase] log save failed:', err);
+      }
+  };
   // Initialize components for Routine "intro"
   introClock = new util.Clock();
   description_text1 = new visual.TextStim({
@@ -3580,11 +3617,16 @@ async function quitPsychoJS(message, isCompleted) {
     if (psychoJS.experiment.isEntryEmpty()) {
       psychoJS.experiment.nextEntry();
     }
-    // Flush a half-finished row (e.g. after Escape), then send the final copy, waiting at most 10 s
+    // Flush a half-finished row (e.g. after Escape), then send the final data and the log, waiting at most 15 s
     if (window.fbSave) {
         if (!psychoJS.experiment.isEntryEmpty()) { psychoJS.experiment.nextEntry(); }
-        await Promise.race([window.fbSave(isCompleted ? 'final' : 'quit_early'),
-                            new Promise(r => setTimeout(r, 10000))]);
+        await Promise.race([
+            (async () => {
+                await window.fbSave(isCompleted ? 'final' : 'quit_early');
+                await window.fbSaveLog();
+            })(),
+            new Promise(r => setTimeout(r, 15000))
+        ]);
     }
     psychoJS.window.close();
     psychoJS.quit({message: message, isCompleted: isCompleted});
