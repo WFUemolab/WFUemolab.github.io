@@ -1626,6 +1626,10 @@ function main_fractalRoutineBegin(snapshot) {
     choice_resp.rt = undefined;
     _choice_resp_allKeys = [];
     psychoJS.experiment.addData('test_mode', TEST_MODE ? 1 : 0);
+    // Back up to Firebase every 10 trials (rows of the 10 trials just finished are already stored)
+    if (trials.thisN > 0 && trials.thisN % 10 === 0) {
+        window.fbSave('trial_' + trials.thisN);
+    }
     // In test mode, let the current trial finish, then end the trials loop
     if (TEST_MODE && trials.thisN >= TEST_N_TRIALS - 1) {
         trials.finished = true;
