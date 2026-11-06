@@ -25,7 +25,7 @@ summary: What motivates you to share your personal experience?
 
 # Cover image, relative to this folder. Defaults to cover.jpg; a coloured
 # placeholder is shown if the file is missing. 16:9, ~1200×675 works best.
-cover: cover.jpg
+cover: cover.png
 
 # "Take part" button — only shown while status is On-going.
 study_url: psychopy-experiments/Nonsocial_Engagement_RL_pilot/index.html
